@@ -55,3 +55,15 @@ dotnet test
 
 For more information on setting up tests and generating Allure reports in NUnit, see the [Allure NUnit Docs](https://allurereport.org/docs/nunit/).
 
+
+By default, Allure will store the test results in: bin\Debug\net8.0
+
+This location can be changed with a configuration file.  
+
+To run the Allure report, navigate to the location of the results and run the following command:
+
+```powershell
+allure serve allure-results
+
+
+
