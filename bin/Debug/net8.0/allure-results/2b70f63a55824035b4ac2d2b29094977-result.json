@@ -1,0 +1,52 @@
+{
+  "uuid": "c16eda52-18b9-4b95-b5ae-3e88f6809eeb",
+  "historyId": "595ee0e93b9f7127739e74f4200393f9",
+  "testCaseId": "f8309da5bfec2951009bf09957d6979c",
+  "fullName": "Allurre_with_Nunit:Swaglabsstes.ExampleTest.GetStartedLink()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "ParallelWorker#3"
+    },
+    {
+      "name": "host",
+      "value": "MSI"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Swaglabsstes"
+    },
+    {
+      "name": "testMethod",
+      "value": "GetStartedLink"
+    },
+    {
+      "name": "testClass",
+      "value": "ExampleTest"
+    }
+  ],
+  "links": [],
+  "name": "GetStartedLink",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "Microsoft.Playwright.PlaywrightException : Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"http//playwright.dev\", waiting until \"load\"",
+    "trace": "   at Microsoft.Playwright.Transport.Connection.InnerSendMessageToServerAsync[T](ChannelOwner object, String method, Dictionary`2 dictionary, Boolean keepNulls) in /_/src/Playwright/Transport/Connection.cs:line 201\r\n   at Microsoft.Playwright.Transport.Connection.WrapApiCallAsync[T](Func`1 action, Boolean isInternal, String title) in /_/src/Playwright/Transport/Connection.cs:line 499\r\n   at Microsoft.Playwright.Core.Frame.GotoAsync(String url, FrameGotoOptions options) in /_/src/Playwright/Core/Frame.cs:line 807\r\n   at Swaglabsstes.ExampleTest.GetStartedLink() in C:\\Users\\ricar\\source\\repos\\Allurre_with_Nunit\\SwagLabsTest.cs:line 27\r\n   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()\r\n   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)\r\n   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)\r\n   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)\r\n   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)\r\n   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()\r\n   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1756633405404,
+  "stop": 1756633407120
+}

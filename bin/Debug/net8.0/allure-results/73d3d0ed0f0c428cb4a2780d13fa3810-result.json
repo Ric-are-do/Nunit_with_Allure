@@ -1,0 +1,45 @@
+{
+  "uuid": "613631c8-ee15-43dc-b6e1-88dab80d30ad",
+  "historyId": "595ee0e93b9f7127739e74f4200393f9",
+  "testCaseId": "f8309da5bfec2951009bf09957d6979c",
+  "fullName": "Allurre_with_Nunit:Swaglabsstes.ExampleTest.GetStartedLink()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "ParallelWorker#1"
+    },
+    {
+      "name": "host",
+      "value": "MSI"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Swaglabsstes"
+    },
+    {
+      "name": "testMethod",
+      "value": "GetStartedLink"
+    },
+    {
+      "name": "testClass",
+      "value": "ExampleTest"
+    }
+  ],
+  "links": [],
+  "name": "GetStartedLink",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1756632613308,
+  "stop": 1756632616857
+}

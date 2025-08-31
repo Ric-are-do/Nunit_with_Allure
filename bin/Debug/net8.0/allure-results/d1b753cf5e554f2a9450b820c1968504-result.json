@@ -1,0 +1,45 @@
+{
+  "uuid": "06690cf8-e78b-4b75-b3ea-71421eb58307",
+  "historyId": "347ebf94e934089f1bd5fe8703c02ed2",
+  "testCaseId": "d5c96ca29ca96d93e52514795e6be1a2",
+  "fullName": "Allurre_with_Nunit:PlaywrightTests.ExampleTest.HasTitle()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "ParallelWorker#8"
+    },
+    {
+      "name": "host",
+      "value": "MSI"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "PlaywrightTests"
+    },
+    {
+      "name": "testMethod",
+      "value": "HasTitle"
+    },
+    {
+      "name": "testClass",
+      "value": "ExampleTest"
+    }
+  ],
+  "links": [],
+  "name": "HasTitle",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1756633408620,
+  "stop": 1756633409081
+}
