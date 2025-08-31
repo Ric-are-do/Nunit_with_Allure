@@ -1,43 +1,16 @@
 # NUnit + Allure Integration Project
 
-## Project Goal
-This project demonstrates how to integrate **Allure reporting** with **NUnit** tests in **Visual Studio Code**. It provides a simple setup to run tests using Playwright and generate rich, interactive test reports with Allure.
+This project demonstrates how to integrate **Allure reporting** with **NUnit** tests in **Visual Studio Code**. It provides a simple setup to run tests using Playwright and generate rich, interactive test reports with Allure.  
 
----
-
-## How Allure Works
 *Insert an image here showing Allure workflow or architecture.*
 
-Allure collects results from your test framework (NUnit) and generates an interactive HTML report. The report can include:
+Allure collects results from your test framework (NUnit) and generates an interactive HTML report. The report can include test steps, attachments (screenshots, logs), links to issues or test management systems, and environment information.  
 
-- Test steps
-- Attachments (screenshots, logs)
-- Links to issues or test management systems
-- Environment information
+The project requires the following tools: **NUnit** ([Docs](https://docs.nunit.org/articles/nunit/intro.html)), **Allure** ([Docs](https://allurereport.org/docs/)), **Playwright** ([.NET Docs](https://playwright.dev/dotnet/docs/intro)), and **Java** (required for report generation) ([Installation](https://docs.qameta.io/allure/#_installing_a_commandline)).  
 
----
+To install Allure, you need Java 8.0 or higher and the Allure NUnit NuGet package.  
 
-## Requirements
-
-- **NUnit** – [NUnit Docs](https://docs.nunit.org/articles/nunit/intro.html)  
-- **Allure** – [Allure Docs](https://allurereport.org/docs/)  
-- **Playwright** – [Playwright .NET Docs](https://playwright.dev/dotnet/docs/intro)  
-- **Java** (required for report generation) – [Allure Report Docs – Installation](https://docs.qameta.io/allure/#_installing_a_commandline)
-
----
-
-## Installing Allure
-
-**Requirements:**
-
-- Java 8.0 or higher  
-- Allure NUnit NuGet package
-
----
-
-## Installing Playwright
-
-Run the following shell commands:
+To install Playwright, run the following shell commands:
 
 ```powershell
 # Create a new NUnit project
@@ -54,16 +27,23 @@ dotnet build
 
 # Install Playwright browsers
 pwsh bin/Debug/net8.0/playwright.ps1 install
+```
 
-## Notes
+Once your project is set up, write your NUnit + Playwright tests and run them via:
 
-> **Note:** Since this repository is mainly for running tests and generating Allure reports, I will not be setting up detailed project settings.  
+```powershell
+dotnet test
+```
 
----
+To generate an Allure report and open it in your browser:
 
-### Running Tests in Headed Mode
+```powershell
+allure serve allure-results
+```
 
-To run a test with a visible browser (headed mode), use the following commands in PowerShell:
+> **Note:** Since this repository is mainly for running tests and generating Allure reports, detailed project settings will not be configured.  
+
+To run tests in headed mode (with a visible browser), use the following commands:
 
 ```powershell
 # Enable headed mode
@@ -71,4 +51,7 @@ $env:HEADED="1"
 
 # Run the tests
 dotnet test
+```
+
+For more information on setting up tests and generating Allure reports in NUnit, see the [Allure NUnit Docs](https://allurereport.org/docs/nunit/).
 
