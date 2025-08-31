@@ -4,15 +4,23 @@ using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 using Allure.NUnit;
+using Allure.NUnit.Attributes;
+using System.ComponentModel;
+
 
 namespace Swaglabsstes;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
 [AllureNUnit]
+[AllureSuite("Swag Labse Test Suite")]
+[AllureFeature("Testing Allure features")]
 public class ExampleTest : PageTest
 {
-    [Test]
+    [Test(Description = "This test logs in and checks the url ")]
+    [AllureStory("This story test -  Navigate to Swag labs")]
+    [AllureStep("This story test -  Navigate to Swag labs - allure step")]
+    [AllureTag("regression")]
     public async Task HasTitle()
     {
         await Page.GotoAsync("https://www.saucedemo.com/");
@@ -21,7 +29,10 @@ public class ExampleTest : PageTest
         await Expect(Page).ToHaveTitleAsync(new Regex("Swag Labs"));
     }
 
-    [Test]
+    [Test(Description = "This test Logs into swag labs  ")]
+    [AllureStory("Log into swag labs and confirm that we are logged in successfully ")]
+    [AllureStep("log into swag labs")]
+    [AllureTag("regression")]
     public async Task login()
     {
         await Page.GotoAsync("https://www.saucedemo.com/");
