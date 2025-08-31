@@ -11,3 +11,11 @@
 .env.local
 .env.test
 .env.production
+
+ ---------------------
+# Build output
+# ---------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
