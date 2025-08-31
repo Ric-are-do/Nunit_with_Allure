@@ -12,8 +12,8 @@ Allure collects results from your test framework (NUnit) and generates an intera
 
 - Test steps
 - Attachments (screenshots, logs)
-- Links to issues or test management systems
-- Environment information
+<img width="940" height="256" alt="image" src="https://github.com/user-attachments/assets/e80ff0fe-d4f4-4cb0-9bd3-69d259dd0b4a" />
+
 
 ---
 
