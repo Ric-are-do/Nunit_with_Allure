@@ -41,6 +41,9 @@ public class ExampleTest : PageTest
         await Page.Locator("#user-name").FillAsync("standard_user");
         await Page.Locator("#password").FillAsync("secret_sauce");
         await Page.Locator("#login-button").ClickAsync();
+        Console.WriteLine("Failing test on purpose next ");
+        Assert.Fail();
+        Console.WriteLine("Forced assert fail");
 
         // Expects page to have a heading with the name of Installation.
         await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");

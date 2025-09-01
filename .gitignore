@@ -19,3 +19,8 @@
 [Oo]bj/
 [Dd]ebug/
 [Rr]elease/
+
+# ---------------------
+# Test reports files
+# ---------------------
+TestReports/
