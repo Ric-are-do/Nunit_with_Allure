@@ -30,6 +30,26 @@ public class ExampleTest : PageTest
     }
 
     [Test(Description = "This test Logs into swag labs  ")]
+    [AllureStory("Log into swag labs and confirm that we are logged in successfully then assert a failure ")]
+    [AllureStep("log into swag labs then assert failure")]
+    [AllureTag("regression")]
+    public async Task loginFail()
+    {
+        await Page.GotoAsync("https://www.saucedemo.com/");
+
+        // Click the get started link.
+        await Page.Locator("#user-name").FillAsync("potato");
+        await Page.Locator("#password").FillAsync("potato");
+        await Page.Locator("#login-button").ClickAsync();
+        Console.WriteLine("Failing test on purpose ");
+
+
+        // Expects page to have a heading with the name of Installation.
+        await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
+    }
+
+
+    [Test(Description = "This test Logs into swag labs  ")]
     [AllureStory("Log into swag labs and confirm that we are logged in successfully ")]
     [AllureStep("log into swag labs")]
     [AllureTag("regression")]
@@ -41,11 +61,6 @@ public class ExampleTest : PageTest
         await Page.Locator("#user-name").FillAsync("standard_user");
         await Page.Locator("#password").FillAsync("secret_sauce");
         await Page.Locator("#login-button").ClickAsync();
-        Console.WriteLine("Failing test on purpose next ");
-        Assert.Fail();
-        Console.WriteLine("Forced assert fail");
-
-        // Expects page to have a heading with the name of Installation.
         await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
     }
 }
