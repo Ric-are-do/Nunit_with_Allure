@@ -67,3 +67,6 @@ allure serve allure-results
 
 
 
+
+Notes
+For more information on re-using state and authentication see https://www.youtube.com/watch?v=ew1kV8gQeJQ
