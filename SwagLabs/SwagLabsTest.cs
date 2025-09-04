@@ -8,7 +8,7 @@ using Allure.NUnit.Attributes;
 using System.ComponentModel;
 
 
-namespace Swaglabsstes;
+namespace Allurre_with_Nunit.SwagLabs;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
