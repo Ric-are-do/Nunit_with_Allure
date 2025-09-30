@@ -21,7 +21,8 @@ namespace Allurre_with_Nunit.SwagLabs
             var playwright =   await Playwright.CreateAsync();
             Browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false
+                // temp setting headless to true here 
+                Headless = true
             });
 
             var context = await Browser.NewContextAsync(new BrowserNewContextOptions
