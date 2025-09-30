@@ -16,10 +16,11 @@ jobs:
             - name: install dependencies and build
               run: dotnet build
             - name: check that the browsers have been installed
-              run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+              run: pwsh bin/Debug/net8.0/playwright.ps1 install
             - name: run tests
               run: dotnet test
-            - name: confirm the folder we are in for the test report 
+            - name: confirm the folder we are in for the test report
+              if: always()
               run: ls
             - name: upload test report artifact 
               if: always()
