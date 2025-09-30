@@ -66,7 +66,16 @@ To run the Allure report, navigate to the location of the results and run the fo
 allure serve allure-results
 
 
+---
+Using the allure workflow 
+- Once you download the artifact from the test 
+- Unzip the folder 
+- open CMD and rune the following powershell command 
 
+```powershell
+allure serve <allure-results>
+
+This will retunr the folder details adn the allure report associated wit the  project
 
 Notes
 For more information on re-using state and authentication see https://www.youtube.com/watch?v=ew1kV8gQeJQ
