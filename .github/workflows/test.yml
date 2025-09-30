@@ -19,3 +19,11 @@ jobs:
               run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
             - name: run tests
               run: dotnet test
+            - name: confirm the folder we are in for the test report 
+              run: ls
+            - name: upload test report artifact 
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: Test reports folder
+                path: TestReports
