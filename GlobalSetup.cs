@@ -21,7 +21,8 @@ public class GlobalSetup
         Pw = await Playwright.CreateAsync();
         Browser = await Pw.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            Headless = false
+            // just handling headless mode here for now 
+            Headless = true
         });
 
         var context = await Browser.NewContextAsync();
