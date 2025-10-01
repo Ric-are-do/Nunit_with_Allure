@@ -34,7 +34,7 @@ jobs:
               uses: simple-elf/allure-report-action@v1.8
               if: always()
               with:
-                allure_results: 'TestReports'
+                allure_results: 'TestReports/*'
                 allure_report: 'Allure Report'
 
             - name: upload the allure report artifact
