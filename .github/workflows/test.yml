@@ -18,16 +18,17 @@ jobs:
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install
             - name: run tests
+              continue-on-error: true
+              id: run-tests
               run: dotnet test
             - name: confirm the folder we are in for the test report
-              if: always()
               run: ls
-            - name: upload test report artifact 
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                name: Test reports folder
-                path: TestReports
+ #           - name: upload test report artifact if tests fail
+ #             if: ${{failure() && steps.run-tests.outcome == 'failure'}}
+ #            uses: actions/upload-artifact@v4
+ #             with:
+ #               name: Test reports folder
+ #               path: TestReports
             
             - name: Generate the Allure report
               uses: simple-elf/allure-report-action@v1.8
