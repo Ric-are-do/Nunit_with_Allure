@@ -30,3 +30,16 @@ jobs:
                 name: Test reports folder
                 path: TestReports
             
+            - name: Generate the Allure report
+              uses: simple-elf/allure-report-action@v1.8
+              if: always()
+              with:
+                allure_results: 'TestReports'
+                allure_report: 'Allure Report'
+
+            - name: upload the allure report artifact
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: Allure Report
+                path: Allure Report
