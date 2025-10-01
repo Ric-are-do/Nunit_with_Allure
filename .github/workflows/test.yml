@@ -18,7 +18,6 @@ jobs:
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install
             - name: run tests
-              continue-on-error: true
               id: run-tests
               run: dotnet test
             - name: confirm the folder we are in for the test report
@@ -30,6 +29,7 @@ jobs:
                 name: Test reports folder
                 path: TestReports
             
+            # geets the test details and generates the allure report
             - name: Generate the Allure report
               uses: simple-elf/allure-report-action@v1.8
               if: always()
