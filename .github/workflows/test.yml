@@ -23,7 +23,7 @@ jobs:
               with:
                 path: ~/.playwright
                 key: playwright-browsers-${{ hashFiles( runner.os ) }}
-                restore-keys: playwright-browsers-${{ runner.os }}
+                restore-keys: playwright-browsers-${{ hashFiles (runner.os ) }}
 
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install
