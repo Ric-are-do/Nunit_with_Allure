@@ -29,6 +29,8 @@ jobs:
               with:
                 name: Test reports folder
                 path: TestReports
+            - name: List test results folder
+              run: ls TestReports
             
             # geets the test details and generates the allure report
             - name: Generate the Allure report
