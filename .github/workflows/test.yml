@@ -16,15 +16,21 @@ jobs:
                 dotnet-version: 8.0.x
             - name: install dependencies and build
               run: dotnet build
+
+# Cache the playwright browsers to speed up the workflow
+            - name: cache playwright browsers
+              uses: actions/cache@v3
+              with:
+                path: ~/.playwright
+                key: playwright-browsers-${{ hashFiles( runner.os ) }}
+                restore-keys: playwright-browsers-${{ runner.os }}
+
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install
             - name: run tests
               id: run-tests
               run: dotnet test
-           
-            - name: confirm the folder we are in for the test report
-              if: always()
-              run: ls -R TestReports
+          
               
             - name: upload test report artifact if tests fail
               if: ${{failure() && steps.run-tests.outcome == 'failure'}}
@@ -34,6 +40,7 @@ jobs:
                 path: TestReports
            
             - name: List test results folder
+              if: always()
               run: |
                 ls -R TestReports
                 find TestReports -type f
