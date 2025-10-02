@@ -3,6 +3,7 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch:
 
 jobs:
     run-tests:
@@ -20,8 +21,10 @@ jobs:
             - name: run tests
               id: run-tests
               run: dotnet test
+           
             - name: confirm the folder we are in for the test report
-              run: ls
+              if: always()
+              run: ls -R TestReports
               
             - name: upload test report artifact if tests fail
               if: ${{failure() && steps.run-tests.outcome == 'failure'}}
@@ -29,10 +32,11 @@ jobs:
               with:
                 name: Test reports folder
                 path: TestReports
+           
             - name: List test results folder
               run: ls TestReports
-            
-            # geets the test details and generates the allure report
+
+            # gets the test details and generates the allure report
             - name: Generate the Allure report
               uses: simple-elf/allure-report-action@v1.13
               if: always()
