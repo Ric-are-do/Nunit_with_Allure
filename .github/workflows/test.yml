@@ -30,11 +30,13 @@ jobs:
               if: ${{failure() && steps.run-tests.outcome == 'failure'}}
               uses: actions/upload-artifact@v4
               with:
-                name: Test reports folder
+                name: Test-reports-folder
                 path: TestReports
            
             - name: List test results folder
-              run: ls TestReports
+              run: |
+                ls -R TestReports
+                find TestReports -type f
 
             # gets the test details and generates the allure report
             - name: Generate the Allure report
