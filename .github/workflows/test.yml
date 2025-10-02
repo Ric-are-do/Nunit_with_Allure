@@ -41,7 +41,7 @@ jobs:
               uses: simple-elf/allure-report-action@v1.13
               if: always()
               with:
-                allure_results: 'TestReports/*'
+                allure_results: 'TestReports/Run_*/*' # path to the results folder which the allure report will use 
                 allure_report: 'Allure-Report'
 
             - name: upload the allure report artifact
