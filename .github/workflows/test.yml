@@ -17,13 +17,6 @@ jobs:
             - name: install dependencies and build
               run: dotnet build
 
-# Cache the playwright browsers to speed up the workflow
-            - name: cache playwright browsers
-              uses: actions/cache@v3
-              with:
-                path: ~/.playwright
-                key: playwright-browsers-${{ hashFiles( runner.os ) }}
-                restore-keys: playwright-browsers-${{ hashFiles (runner.os ) }}
 
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install
@@ -44,18 +37,3 @@ jobs:
               run: |
                 ls -R TestReports
                 find TestReports -type f
-
-            # gets the test details and generates the allure report
-            - name: Generate the Allure report
-              uses: simple-elf/allure-report-action@v1.13
-              if: always()
-              with:
-                allure_results: 'TestReports/Run_*/*' # path to the results folder which the allure report will use 
-                allure_report: 'Allure-Report'
-
-            - name: upload the allure report artifact
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                name: Allure-Report
-                path: Allure-Report
