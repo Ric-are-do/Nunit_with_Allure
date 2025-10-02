@@ -22,6 +22,7 @@ jobs:
               run: dotnet test
             - name: confirm the folder we are in for the test report
               run: ls
+              
             - name: upload test report artifact if tests fail
               if: ${{failure() && steps.run-tests.outcome == 'failure'}}
               uses: actions/upload-artifact@v4
@@ -31,7 +32,7 @@ jobs:
             
             # geets the test details and generates the allure report
             - name: Generate the Allure report
-              uses: simple-elf/allure-report-action@v1.8
+              uses: simple-elf/allure-report-action@v1.13
               if: always()
               with:
                 allure_results: 'TestReports/*'
