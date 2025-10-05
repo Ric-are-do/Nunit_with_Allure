@@ -3,14 +3,21 @@ on:
     push:
         branches:
             - main
+            - dev
     workflow_dispatch:
 
 jobs:
+    # putting this job into a container -> if you wanted to add the image from the project you need to host it on docker hub or somewhere
+
     run-tests:
         runs-on: ubuntu-latest
+        container:
+          image: mcr.microsoft.com/dotnet/sdk:8.0  # geting the base image from microsoft
         steps:
+        # all the seteps will work as before except they will run in the container 
             - uses: actions/checkout@v4
-            - name: setup dotnet environment
+            
+            - name: setup dotnet environment # this step can now be skipped entirely since we running in a container with dotnet , im just keeping it for myself for later projects
               uses: actions/setup-dotnet@v4
               with:
                 dotnet-version: 8.0.x
@@ -19,12 +26,18 @@ jobs:
 
 
             - name: check that the browsers have been installed
-              run: pwsh bin/Debug/net8.0/playwright.ps1 install
+              run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps #slower on install but is needed for container env
             - name: run tests
               id: run-tests
-              run: dotnet test
+              run: dotnet test --logger "trx;LogFileName=test_results.trx"
           
-              
+            - name: upload Trx logger file 
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name : test-results
+                path: '**/test_results.trx'
+
             - name: upload test report artifact if tests fail
               if: ${{failure() && steps.run-tests.outcome == 'failure'}}
               uses: actions/upload-artifact@v4
