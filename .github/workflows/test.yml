@@ -26,7 +26,7 @@ jobs:
 
 
             - name: check that the browsers have been installed
-              run: pwsh bin/Debug/net8.0/playwright.ps1 install
+              run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
             - name: run tests
               id: run-tests
               run: dotnet test --logger "trx;LogFileName=test_results.trx"
