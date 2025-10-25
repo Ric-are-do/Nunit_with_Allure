@@ -35,7 +35,7 @@ jobs:
             - name: Load Test Report History 
               uses: actions/checkout@v4
               if: always()
-              continue-on-error: test_results
+              continue-on-error: test-results
               with:
                 ref: main
                 path: report_History 
@@ -58,7 +58,7 @@ jobs:
 
           # Allure end 
 
-          
+
             - name: upload Trx logger file 
               if: always()
               uses: actions/upload-artifact@v4
