@@ -29,7 +29,7 @@ jobs:
               run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps #slower on install but is needed for container env
             - name: run tests
               id: run-tests
-              run: dotnet test --logger "trx;LogFileName=test_results.trx"
+              run: dotnet test --logger "trx;LogFileName=test_results.trx" --results-directory TestReports
 
             # Allure histroyry stetup 
             - name: Load Test Report History 
@@ -42,20 +42,19 @@ jobs:
 
             - name: Build test report
               uses: simple-elf/allure-report-action@v1.7
-
               if: always()
               with:
-                gh_pages: report_History
-                allure_results: TestReports
-                allure_history: allure_history
+                gh_pages: allure-history
+                allure_results: TestReports/Run_*/   # <-- Wildcard for your Run_ folders
+                allure_history: allure-history
 
             - name: Publish test result
               uses: peaceiris/actions-gh-pages@v3
               if: always()
               with:
                 github_token: ${{secrets.GITHUB_TOKEN}}
-                publish_branch: main
-                publish_dir: allure_history
+                publish_branch: gh_pages
+                publish_dir: allure-history
 
           # Allure end 
 
