@@ -35,13 +35,14 @@ jobs:
             - name: Load Test Report History 
               uses: actions/checkout@v4
               if: always()
-              continue-on-error: test-results
+              continue-on-error: true
               with:
                 ref: main
                 path: report_History 
 
             - name: Build test report
-              uses: simple-elf/allure-report-action@1.7
+              uses: uses: simple-elf/allure-report-action@v1.7
+
               if: always()
               with:
                 gh_pages: report_History
@@ -63,7 +64,7 @@ jobs:
               if: always()
               uses: actions/upload-artifact@v4
               with:
-                name : test-results
+                name: test-results
                 path: '**/test_results.trx'
 
             - name: upload test report artifact if tests fail
