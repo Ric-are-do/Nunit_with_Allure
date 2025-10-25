@@ -16,7 +16,6 @@ jobs:
         steps:
         # all the seteps will work as before except they will run in the container 
             - uses: actions/checkout@v4
-            
             - name: setup dotnet environment # this step can now be skipped entirely since we running in a container with dotnet , im just keeping it for myself for later projects
               uses: actions/setup-dotnet@v4
               with:
@@ -24,13 +23,42 @@ jobs:
             - name: install dependencies and build
               run: dotnet build
 
+           
 
             - name: check that the browsers have been installed
               run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps #slower on install but is needed for container env
             - name: run tests
               id: run-tests
               run: dotnet test --logger "trx;LogFileName=test_results.trx"
-          
+
+            # Allure histroyry stetup 
+            - name: Load Test Report History 
+              uses: actions/checkout@v4
+              if: always()
+              continue-on-error: test-results
+              with:
+                ref: main
+                path: report_History 
+
+            - name: Build test report
+              uses: simple-elf/allure-report-action@1.7
+              if: always()
+              with:
+                gh_pages: report_History
+                allure_results: TestReports
+                allure_history: allure_history
+
+            - name: Publish test result
+              uses: peaceiris/actions-gh-pages@v3
+              if: always()
+              with:
+                github_token: ${{secrets.GITHUB_TOKEN}}
+                publish_branch: main
+                publish_dir: allure_history
+
+          # Allure end 
+
+
             - name: upload Trx logger file 
               if: always()
               uses: actions/upload-artifact@v4
