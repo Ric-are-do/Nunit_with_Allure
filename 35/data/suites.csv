@@ -1,9 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Oct 27 20:42:34 GMT 2025","Mon Oct 27 20:42:34 GMT 2025","791","","Swag Labse Test Suite","","ExampleTest","HasTitle","HasTitle","This test logs in and checks the url 
-"
-"passed","Mon Oct 27 20:42:34 GMT 2025","Mon Oct 27 20:42:35 GMT 2025","353","","Swag Labse Test Suite","","ExampleTest","login","login","This test Logs into swag labs  
-"
-"broken","Mon Oct 27 20:42:35 GMT 2025","Mon Oct 27 20:42:40 GMT 2025","5310","","Swag Labse Test Suite","","ExampleTest","loginFail","loginFail","This test Logs into swag labs  
-"
-"broken","Mon Oct 27 20:42:34 GMT 2025","Mon Oct 27 20:42:40 GMT 2025","5939","","State Storage Tests","","StateStorageTests","login","login","This test Logs into swag labs  
-"
