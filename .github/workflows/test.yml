@@ -52,7 +52,7 @@ jobs:
         if: always()
         with:
           gh_pages: gh-pages
-          allure_history: allure-history
+          allure_history: last-history
           allure_results: bin/Debug/net8.0/allure-results
 
       - name: Publish test report
