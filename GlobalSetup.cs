@@ -65,7 +65,11 @@ public class GlobalSetup
     public void RunAfterAllTests()
     {
 
+        // If i wanted uniques files generted each time I could do the below 
+        // the issue is in the pipelines buecase there is a uniques folder created each time 
+        // Then the Github pages dont have the history stored in it 
 
+        /*
         var timestamps = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         var targetDir = Path.Combine($"Run_{timestamps}");
         var baseTestDirectory = "../../../TestReports";
@@ -79,6 +83,30 @@ public class GlobalSetup
         else
         {
             Console.WriteLine("Directory 'allure-results' not found.");
+        }
+
+        */
+
+         var baseTestDirectory = "../../../TestReports";
+        var targetDir = Path.Combine(baseTestDirectory, "allure-results");
+
+        Directory.CreateDirectory("../../../TestReports");
+
+        // Delete old results if they exist (to avoid errors)
+    if (Directory.Exists(targetDir))
+    {
+        Directory.Delete(targetDir, true);
+    }
+
+
+        if (Directory.Exists("allure-results"))
+        {
+            Directory.Move("allure-results", $"{targetDir}");
+            System.Console.WriteLine(($"Moved allure results to {targetDir}"));
+        }
+        else
+        {
+             Console.WriteLine("Directory 'allure-results' not found.");
         }
     }
 }
