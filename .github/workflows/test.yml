@@ -1,79 +1,96 @@
 ﻿name: playwright-tests
+
 on: 
-    push:
-        branches:
-            - main
-            - dev
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
 
 jobs:
-    run-tests:
-        permissions: 
-          contents: write
-        runs-on: ubuntu-latest
-        container:
-          image: mcr.microsoft.com/dotnet/sdk:8.0
-        steps:
-            - uses: actions/checkout@v4
+  run-tests:
+    permissions: 
+      contents: write
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:8.0
 
-            - name: setup dotnet environment
-              uses: actions/setup-dotnet@v4
-              with:
-                dotnet-version: 8.0.x
+    steps:
+      # 📦 Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: install dependencies and build
-              run: dotnet build
+      # ⚙️ Setup .NET SDK
+      - name: Setup .NET environment
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-            - name: check that the browsers have been installed
-              run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+      # 🏗️ Build project
+      - name: Install dependencies and build
+        run: dotnet build
 
-            - name: run tests
-              id: run-tests
-              run: dotnet test --logger "trx;LogFileName=test_results.trx" --results-directory TestReports
+      # 🧩 Install Playwright browsers
+      - name: Ensure Playwright browsers are installed
+        run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
 
-            # Allure history setup
-            - name: Load Test Report History 
-              uses: actions/checkout@v4
-              if: always()
-              continue-on-error: true
-              with:
-                ref: main
-                path: report_History 
+      # 🧪 Run Playwright tests (always outputs to TestReports/allure-results)
+      - name: Run tests
+        id: run-tests
+        run: |
+          mkdir -p TestReports/allure-results
+          dotnet test --logger "trx;LogFileName=test_results.trx" --results-directory TestReports/allure-results
 
-            - name: List test results folder
-              if: always()
-              run: |
-                ls -R TestReports
-                find TestReports -type f
+      # 🧱 Load previous Allure history from gh-pages branch
+      - name: Load Allure History
+        if: always()
+        run: |
+          git clone --depth 1 --branch gh-pages https://github.com/${{ github.repository }}.git gh-pages
+          if [ -d "gh-pages/history" ]; then
+            echo "✅ Copying existing Allure history..."
+            mkdir -p TestReports/allure-results/history
+            cp -r gh-pages/history/* TestReports/allure-results/history/
+          else
+            echo "⚠️ No previous history found (first run or gh-pages missing)."
+          fi
 
-            - name: Build test report
-              uses: simple-elf/allure-report-action@v1.7
-              if: always()
-              with:
-                gh_pages: allure-history
-                allure_results: TestReports/allure-results*/  # this seems to be the job that causes a new page to form every time , maybe a chang in the repo on how we name our test results is the fix , giving the tests 1 name that gets used every time instad of a timestamp to seperate tests 
-                allure_history: allure-history
+      # 🔍 List test results (for debugging)
+      - name: List test results folder
+        if: always()
+        run: |
+          echo "📁 TestReports structure:"
+          ls -R TestReports || true
 
-            - name: Publish test result
-              uses: peaceiris/actions-gh-pages@v3
-              if: always()
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_branch: gh-pages      
-                publish_dir: allure-history
+      # 🧩 Build Allure report
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_results: TestReports/allure-results
+          allure_history: allure-history
 
-            # Allure end
+      # 🚀 Publish report to GitHub Pages
+      - name: Publish Allure Report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
 
-            - name: upload Trx logger file 
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                name: test-results
-                path: '**/test_results.trx'
+      # 💾 Upload TRX results as artifact
+      - name: Upload TRX logger file 
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/test_results.trx'
 
-            - name: upload test report artifact if tests fail
-              if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
-              uses: actions/upload-artifact@v4
-              with:
-                name: Test-reports-folder
-                path: TestReports
+      # 💾 Upload entire TestReports if tests failed
+      - name: Upload TestReports if tests fail
+        if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestReports
+          path: TestReports
