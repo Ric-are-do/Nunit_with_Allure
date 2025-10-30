@@ -87,27 +87,9 @@ public class GlobalSetup
 
         */
 
-         var baseTestDirectory = "../../../TestReports";
-        var targetDir = Path.Combine(baseTestDirectory, "allure-results");
+        // in the pipeline we want it to pick up from debug folder for the reports , so we wont create
+        // a specific folder to move it to 
 
-        Directory.CreateDirectory("../../../TestReports");
-
-        // Delete old results if they exist (to avoid errors)
-    if (Directory.Exists(targetDir))
-    {
-        Directory.Delete(targetDir, true);
-    }
-
-
-        if (Directory.Exists("allure-results"))
-        {
-            Directory.Move("allure-results", $"{targetDir}");
-            System.Console.WriteLine(($"Moved allure results to {targetDir}"));
-        }
-        else
-        {
-             Console.WriteLine("Directory 'allure-results' not found.");
-        }
     }
 }
 
