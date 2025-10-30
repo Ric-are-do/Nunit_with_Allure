@@ -50,7 +50,7 @@ jobs:
               uses: simple-elf/allure-report-action@v1.7
               if: always()
               with:
-                gh_pages: allure-history
+                gh_pages: gh-pages
                 allure_results: TestReports/allure-results*/  # this seems to be the job that causes a new page to form every time , maybe a chang in the repo on how we name our test results is the fix , giving the tests 1 name that gets used every time instad of a timestamp to seperate tests 
                 allure_history: allure-history
 
