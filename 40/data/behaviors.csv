@@ -1,4 +1,0 @@
-"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
-"","Testing Allure features","This story test -  Navigate to Swag labs","0","0","1","0","0"
-"","Testing Allure features","Log into swag labs and confirm that we are logged in successfully then assert a failure ","0","1","0","0","0"
-"","Testing Allure features","Log into swag labs and confirm that we are logged in successfully ","0","1","1","0","0"
