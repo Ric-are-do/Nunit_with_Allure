@@ -41,6 +41,14 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Verify allure-results exists
+        if: always()
+        run: |
+          echo "Checking for allure-results directory..."
+          ls -R bin/Debug/net8.0 || echo "❌ Path not found"
+          ls -R bin/Debug/net8.0/allure-results || echo "❌ allure-results missing or empty"
+          echo "Done checking allure-results path."
+
       - name: List test results folder
         if: always()
         run: |
