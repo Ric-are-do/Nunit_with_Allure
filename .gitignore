@@ -24,3 +24,8 @@
 # Test reports files
 # ---------------------
 TestReports/
+
+# ---------------------
+# Claude Code context
+# ---------------------
+CLAUDE.md
