@@ -65,13 +65,26 @@ jobs:
           publish_branch: gh-pages
           publish_dir: allure-history
 
+      # Generate single-file Allure report for sharing
+      - name: Install Allure CLI
+        if: always()
+        run: |
+          apt-get update && apt-get install -y default-jre-headless wget unzip
+          wget -q https://github.com/allure-framework/allure2/releases/download/2.32.0/allure-2.32.0.zip
+          unzip -q allure-2.32.0.zip -d /opt
+          ln -s /opt/allure-2.32.0/bin/allure /usr/local/bin/allure
+
+      - name: Generate single-file Allure report
+        if: always()
+        run: allure generate --single-file bin/Debug/net8.0/allure-results --clean -o allure-single-file-report
+
       # Upload artifacts
-      - name: Upload Allure report
+      - name: Upload single-file Allure report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: allure-history
+          path: allure-single-file-report
 
       - name: Upload TRX logger file
         if: always()
