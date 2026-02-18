@@ -1,0 +1,9 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Login with valid credentials succeeds
+","458","LoginSuccess","","Wed Feb 18 10:07:50 UTC 2026","passed","Wed Feb 18 10:07:50 UTC 2026","","Login Test Suite","LoginTests","LoginSuccess"
+"Verify stored auth state allows direct access to inventory
+","574","StoredStateAllowsDirectAccess","","Wed Feb 18 10:07:49 UTC 2026","passed","Wed Feb 18 10:07:49 UTC 2026","","State Storage Tests","StateStorageTests","StoredStateAllowsDirectAccess"
+"Login with invalid credentials fails
+","458","LoginFailure","","Wed Feb 18 10:07:49 UTC 2026","passed","Wed Feb 18 10:07:50 UTC 2026","","Login Test Suite","LoginTests","LoginFailure"
+"Verify the Swag Labs page title
+","548","HasTitle","","Wed Feb 18 10:07:49 UTC 2026","passed","Wed Feb 18 10:07:49 UTC 2026","","Login Test Suite","LoginTests","HasTitle"
