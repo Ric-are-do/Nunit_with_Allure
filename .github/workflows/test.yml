@@ -86,16 +86,9 @@ jobs:
           name: allure-report
           path: allure-single-file-report
 
-      - name: Upload TRX logger file
+      - name: Upload TRX test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: trx-test-results
           path: '**/test_results.trx'
-
-      - name: Upload test report artifact if tests fail
-        if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Test-reports-folder
-          path: TestReports
