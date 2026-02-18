@@ -1,0 +1,5 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","","0","Authentication State","1","0","Access inventory page using stored authentication state","0"
+"0","","0","Login","1","0","Log into Swag Labs with invalid credentials and verify error","0"
+"0","","0","Login","1","0","Navigate to Swag Labs and verify title","0"
+"0","","0","Login","1","0","Log into Swag Labs with valid credentials","0"
