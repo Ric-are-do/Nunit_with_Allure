@@ -56,6 +56,9 @@ jobs:
           gh_pages: gh-pages
           allure_history: allure-history
           allure_results: bin/Debug/net8.0/allure-results
+          allure_report: allure-report
+          github_run_num: ${{ github.run_number }}
+          github_run_id: ${{ github.run_id }}
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v4.0.0
