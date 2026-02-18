@@ -94,9 +94,13 @@ docker run allure-tests
 
 ## GitHub Pages — Live Test Report
 
-The latest Allure test report is automatically published to GitHub Pages after every pipeline run:
+The latest Allure test report is always available at a **fixed URL**:
 
 **https://ric-are-do.github.io/Nunit_with_Allure/**
+
+This link never changes — bookmark it or share it with your team. It automatically redirects to the most recent test run.
+
+**How it works:** Each pipeline run creates a numbered report (e.g. `/1/`, `/2/`, `/3/`). A root `index.html` always redirects to the latest. Previous runs remain accessible at their numbered URLs if needed.
 
 The report includes:
 - Test results with pass/fail status for every test
